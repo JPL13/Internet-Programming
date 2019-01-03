@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" 
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+   <meta name="authors" content="Luna"/>
+   <meta name="description"
+content="business webpage for HW1"/>
+<meta name="keywords" content="PIC,ucla,business"/>
+<meta name="copyright"
+content="Copyright 2018 Luna Piao, All Rights
+Reserved"/>
+      <title>Orders</title>
+      <link href="mybusiness.css" rel="stylesheet" type="text/css" />
+ </head>
+
+
+
+<body>
+
+<div id="main_container">
+    <div id="header">
+       <h1>Luna's&reg; Coffee</h1>
+            <blockquote>
+             <p>"Light up your day with the special blend"</p>
+            </blockquote>
+    </div>
+    
+     <div >
+    <ul id="navbar">
+         <li><a href="#">Home</a><ul>
+            <li><a href="http://www.pic.ucla.edu/~jpiao/mybusiness2.html">Homepage</a></li>
+            <li><a href="#">Second Subitem</a></li>
+            <li><a href="#">Numero Tres</a></li></ul>
+         </li>
+         <li><a href="#">Order</a>
+            <ul>
+               <li><a href="http://www.pic.ucla.edu/~jpiao/order2.html"> Order here</a></li></ul>
+         </li>
+         
+         <li><a href="#">Menu</a>
+            <ul>
+               <li><a href="#">Subitem One</a></li><li>
+               <a href="#">Second Subitem</a></li><li>
+               <a href="#">Numero Tres</a></li><li>
+               <a href="#">Fourth Thinger</a></li></ul>         
+         </li>
+        <li><a href="#">Links</a>
+            <ul>
+               <li><a href="http://www.starbucks.com">Starbucks&reg;</a></li>
+               <li><a href="http://www.peets.com">Peet's Coffee&reg;</a></li>
+               <li><a href="http://www.coffeebean.com"> The Coffee Bean &amp; Tea Leaf&reg;</a></li>
+            </ul>
+         </li>
+    </ul>
+    
+
+    </div>
+
+
+    
+    
+    <div id="sidebar">
+      <h3>Welcome!</h3>
+
+      <ul id="nav">
+        <li><a href="#">Home</a></li>
+
+        <li><a href="#">About Us</a></li>
+
+        <li><a href="#">Menu</a></li>
+
+        <li><a href="#">Most Popular</a></li>
+
+        <li><a href="#">Contact</a></li>
+      </ul>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+      incididunt ut labore et dolore magna aliqua.</p><br />
+      <br />
+    </div>
+ <div id="content">
+
+<form action="" method="post">  
+
+   <fieldset>
+    <legend class="legend">Customer Information</legend>
+    <label>Name:
+    <input type="text" name="name" /><br/>
+    </label>
+    <label>Street:
+    <input type="text" name="street" /><br/>
+    </label> 
+    <label>City:
+    <input type="text" name="city" /><br/>
+    </label> 
+    <label>State:
+    <input type="text" name="state" /><br/>
+    </label>
+    <label>Zipcode:
+    <input type="text" name="zipcode" /><br/>
+    </label>
+   </fieldset>
+  
+
+<fieldset>
+    <legend class="legend">Order Information</legend>
+     
+    <label>How did you find out about us? </label>
+   
+    <input type="radio" name="source" value="Commercial" />Commercial&nbsp;
+    <input type="radio" name="source" value="Commercial" />Magazine Ad&nbsp;
+    <input type="radio" name="source" value="Commercial" />Other&nbsp;
+        <br />
+    
+
+    <input type="checkbox" name="emailssend" checked="checked"/> <label>Send me emails about future products <br/> <br/>
+    </label>
+
+<table border="1">			
+ 
+ <caption>Product List</caption>
+    <tr>
+      <th>Product</th>
+      <th>Description</th>
+      <th>Price</th> 
+      <th>Qty</th>
+    </tr>
+    <tr>
+      <td>Weekly Special&trade;</td>
+      <td>Freshly brewed coffee of the day</td>
+      <td>&#36; 2.99</td>
+      <td><input type="text" name="qty" /></td> 
+    </tr> 
+    <tr>
+      <td>Matcha Latte&trade;</td>
+      <td>Sweetened finely milled green tea leaves steamed with organic milk</td>
+      <td>&#36; 3.45</td>
+      <td><input type="text" name="qty" /></td> 
+    </tr>
+    <tr>
+      <td>Coffee Mocha&trade;</td>
+      <td> Espresso with bittersweet mocha sauce and sweetened whipped cream. </td>
+      <td>&#36; 4.15</td>
+      <td><input type="text" name="qty" /></td> 
+    </tr>
+    <tr>
+      <td>Almond Latte&trade;</td>
+      <td>Rich espresso blended with creamy almond milk</td>
+      <td>&#36; 3.99</td>
+      <td><input type="text" name="qty" /></td> 
+    </tr>
+    <tr>
+      <td>Cold Brew&trade;</td>
+      <td>Slow-steeped for 20 hours for a smooth &amp; balanced flavor</td>
+      <td>&#36; 3.45</td>
+      <td><input type="text" name="qty" /></td> 
+    </tr>
+   
+
+</table>
+			
+     
+<br/><br/>
+
+
+    <label>Select a credit card
+      <select name="card">
+      
+        <option selected="selected">Visa</option>
+        <option> Master</option>
+        <option>Amex</option>
+
+       </select>
+      <br/>
+     </label>
+
+    <label>Credit Card Number:
+   
+    <input type="password" name="Credit Card"/>
+    </label>
+    <br />
+
+
+  </fieldset>
+  <fieldset>
+    <input type="reset" value="Clear"/>
+    <input type="submit" value="Submit" />
+    <br />
+  </fieldset>
+</form>
+
+<h2 >Come and treat yourself!</h2>
+</div>
+
+
+
+<!-- W3C XHTML Validation logo-->
+<p>
+    <a href="http://jigsaw.w3.org/css-validator/check/referer">
+        <img style="border:0;width:88px;height:31px"
+            src="http://jigsaw.w3.org/css-validator/images/vcss"
+            alt="Valid CSS!" />
+    </a>
+</p>
+
+
+</div>
+
+</body>
+</html>
+

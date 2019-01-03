@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+ "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
+<title>JavaScript HW3</title>
+
+<style type="text/css">
+*{//margin:0;
+//padding: 0;}
+
+body {
+    font-size: 24px;
+    background-color: white;
+    text-align:center; 
+    padding-left: 430px;  
+    padding-right: 430px;  
+}
+
+#main {
+ background-color: pink;
+   border: 2px solid black;
+   padding-top: 15px;
+   border-radius: 15px;
+}
+
+#display {
+  font-size: 26px;
+  color: #c97874;
+  line-height: 3em;
+  text-align: right;
+  vertical-align: middle;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  border-width: 2px;
+  border-color: dimgray;
+  width: 13em;
+  height: 2.5em;
+  margin:10px;
+ 
+}
+
+.container {
+  background-color: pink;
+ display: grid;
+  justify-content: center;
+ // grid-template-columns: 70px 70px 70px 70px;
+ // grid-template-rows: 70px 70px 70px 70px;
+//  padding-top: 15px;
+   margin: 10px;
+   border-radius: 15px;
+}
+
+.button {
+  background-color: dimgray;
+  border: none;
+  color: white;
+  padding: 30px;
+  font-size: 18px;
+  text-align: center;
+  margin: 4px 2px;
+  border-radius: 50%;
+  height: 75px;
+  width: 75px;
+}
+
+.button-op {
+  background-color: silver;
+  border: none;
+  color: black;
+  padding: 30px;
+  font-size: 18px;
+  text-align: center;
+  margin: 2px 2px;
+  border-radius: 50%;
+}
+
+
+</style>
+
+
+
+
+
+
+<script type="text/javascript">
+<!-- 
+
+    Memory  = "";      
+    Current = ""; 
+    Operation =0;
+    equal_pushed=false;
+    
+     function display(num) {
+        var node = document.getElementById("display");  
+		node.value=num;
+     }
+     
+     function append(num){
+        if(equal_pushed && Operation==0)
+        {    Memory  = "";      
+             Current = ""; 
+             Operation =0;
+             equal_pushed=false;   
+        }
+      
+        if(Current.indexOf(".") != -1)
+        { Current = Current + num; }
+           
+        //else if(equal_pushed &&Operation!=0)
+        //{ Current =num;}   
+        
+        else
+           { Current = Current + num;}
+           
+        display(Current);
+     }
+   
+    function Dot()                  //PUT IN "." if appropriate.
+     {  
+          if ( Current.indexOf(".") == -1)
+              { Current = Current + ".";}
+          display( Current);
+     }
+ 
+ function Operate(op)            
+ {
+  if(Operation==0)
+ { if (op.indexOf("*") > -1) {  Operation = 1; };       //codes for *
+   if (op.indexOf("/") > -1) {  Operation = 2; };       // slash (divide)
+   if (op.indexOf("+") > -1) {  Operation = 3; };       // sum
+   if (op.indexOf("-") > -1) {  Operation = 4; };       // difference
+   
+   Memory = Current;                 //store value
+   Current = "";                     
+   display( Memory);
+   }      
+   
+   else
+   {
+     if (Operation == 1) { Current = Number(Memory) * Number(Current);};
+     if (Operation == 2) { Current = Number(Memory) / Number(Current); };
+     if (Operation == 3) { Current = Number(Memory) + Number(Current); };
+     if (Operation == 4) { Current = Number(Memory) - Number(Current); };
+     
+     if (op.indexOf("*") > -1) {  Operation = 1; };       //codes for *
+     if (op.indexOf("/") > -1) {  Operation = 2; };       // slash (divide)
+     if (op.indexOf("+") > -1) {  Operation = 3; };       // sum
+     if (op.indexOf("-") > -1) {  Operation = 4; };       // difference
+     display(Current);  
+     Memory  = Current; 
+      Current = "";  
+   }
+
+ }
+
+function Calculate()            //PERFORM CALCULATION (= button)
+ { 
+  if (Operation == 1) { Current = (Memory-0) * (Current-0); };
+  if (Operation == 2) { Current = (Memory-0) / (Current-0) };
+  if (Operation == 3) { Current = (Memory-0) + (Current-0); };
+  if (Operation == 4) { Current = (Memory-0) - (Current-0); };
+  Operation = 0;                //clear operation
+  Memory    = "";              //clear memory
+  display(Current);
+  equal_pushed=true;
+ 
+ }
+	 
+//-->
+
+</script>
+</head>
+<body> 
+<h1>Simple calculator</h1>
+
+<!--This is the text box where numbers will be displayed.  Call the display function to show a number here -->
+
+<div id="main">
+<form action="" method="get" id="viewer">
+<p>
+	<input type="text" id="display"/>
+</p>
+</form>
+
+<form action="" method="get" class="container">
+
+<!--Your calculator buttons go here. Note there is no submit buttons at all -->
+<table> 
+<tr>
+<td><input type="button" class="button" name="btn7" value="7" onclick="append(btn7.value)"/></td>
+<td><input type="button" class="button" name="btn8" value="8" onclick="append(btn8.value)"/></td>
+<td><input type="button" class="button" name="btn9" value="9" onclick="append(btn9.value)"/></td>
+<td><input type="button" class="button-op" name="divide" value="/" onclick="Operate(divide.value)"/></td>
+
+</tr>
+
+<tr>
+<td><input type="button" class="button" name="btn4" value="4" onclick="append(btn4.value)"/></td>
+<td><input type="button" class="button" name="btn5" value="5" onclick="append(btn5.value)"/></td>
+<td><input type="button" class="button" name="btn6" value="6" onclick="append(btn6.value)"/></td>
+<td><input type="button" class="button-op" name="mul" value="*" onclick="Operate(mul.value)"/></td>
+</tr>
+  
+<tr>
+<td><input type="button" class="button" name="btn1" value="1" onclick="append(btn1.value)"/></td>
+<td><input type="button" class="button" name="btn2" value="2" onclick="append(btn2.value)"/></td>
+<td><input type="button" class="button" name="btn3" value="3" onclick="append(btn3.value)"/></td>
+<td><input type="button" class="button-op" name="subtract" value="-" onclick="Operate(subtract.value)"/></td>
+</tr>
+  
+<tr>
+<td><input type="button" class="button" name="dot" value="." onclick="Dot()"/></td>
+<td><input type="button" class="button" name="btn0" value="0" onclick="append(btn0.value)"/></td>
+<td><input type="button" class="button-op" name="equal" value="=" onclick="Calculate()"/></td>
+<td><input type="button" class="button-op" name="plus" value="+" onclick="Operate(plus.value)"/></td>
+</tr>
+  
+</table>
+</form>
+
+</div>
+<!-- W3C XHTML Validation logo-->
+<p>
+  <a href="http://validator.w3.org/check?uri=referer"><img
+     src="http://www.w3.org/Icons/valid-xhtml11"
+     alt="Valid XHTML 1.1" height="31" width="88" /></a>
+</p>
+</body>
+</html>
+

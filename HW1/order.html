@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" 
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+   <head>
+   <meta name="authors" content="Luna"/>
+   <meta name="description"
+content="business webpage for HW1"/>
+<meta name="keywords" content="PIC,ucla,business"/>
+<meta name="copyright"
+content="Copyright 2018 Luna Piao, All Rights
+Reserved"/>
+      <title>Orders</title>
+ </head>
+
+
+
+<body>
+<h1>Order Form</h1>
+<form action="" method="post">  
+
+   <fieldset>
+    <legend>Customer Information</legend>
+    <label>Name:
+    <input type="text" name="name" /><br/>
+    </label>
+    <label>Street:
+    <input type="text" name="street" /><br/>
+    </label> 
+    <label>City:
+    <input type="text" name="city" /><br/>
+    </label> 
+    <label>State:
+    <input type="text" name="state" /><br/>
+    </label>
+    <label>Zipcode:
+    <input type="text" name="zipcode" /><br/>
+    </label>
+   </fieldset>
+  
+
+<fieldset>
+    <legend>Order Information</legend>
+     
+    <label>How did you find out about us? </label>
+   
+    <input type="radio" name="source" value="Commercial" />Commercial&nbsp;
+    <input type="radio" name="source" value="Commercial" />Magazine Ad&nbsp;
+    <input type="radio" name="source" value="Commercial" />Other&nbsp;
+        <br />
+    
+
+    <input type="checkbox" name="emailssend" checked="checked"/> <label>Send me emails about future products <br/> <br/>
+    </label>
+
+<table border="1">			
+ 
+ <caption>Product List</caption>
+    <tr>
+      <th>Product</th>
+      <th>Description</th>
+      <th>Price</th> 
+      <th>Qty</th>
+    </tr>
+    <tr>
+      <td>Weekly Special&trade;</td>
+      <td>Freshly brewed coffee of the day</td>
+      <td>&#36; 2.99</td>
+      <td><input type="text" name="qty" /></td> 
+    </tr> 
+    <tr>
+      <td>Matcha Latte&trade;</td>
+      <td>Sweetened finely milled green tea leaves steamed with organic milk</td>
+      <td>&#36; 3.45</td>
+      <td><input type="text" name="qty" /></td> 
+    </tr>
+    <tr>
+      <td>Coffee Mocha&trade;</td>
+      <td> Espresso with bittersweet mocha sauce and sweetened whipped cream. </td>
+      <td>&#36; 4.15</td>
+      <td><input type="text" name="qty" /></td> 
+    </tr>
+    <tr>
+      <td>Almond Latte&trade;</td>
+      <td>Rich espresso blended with creamy almond milk</td>
+      <td>&#36; 3.99</td>
+      <td><input type="text" name="qty" /></td> 
+    </tr>
+    <tr>
+      <td>Cold Brew&trade;</td>
+      <td>Slow-steeped for 20 hours for a smooth &amp; balanced flavor</td>
+      <td>&#36; 3.45</td>
+      <td><input type="text" name="qty" /></td> 
+    </tr>
+   
+
+</table>
+			
+     
+<br/><br/>
+
+
+    <label>Select a credit card
+      <select name="card">
+      
+        <option selected="selected">Visa</option>
+        <option> Master</option>
+        <option>Amex</option>
+
+       </select>
+      <br/>
+     </label>
+
+    <label>Credit Card Number:
+   
+    <input type="password" name="Credit Card"/>
+    </label>
+    <br />
+
+
+
+
+
+  </fieldset>
+  <fieldset>
+    <input type="reset" value="Clear"/>
+    <input type="submit" value="Submit" />
+    <br />
+  </fieldset>
+</form>
+
+<h2>Come and treat yourself!</h2>
+
+<!-- W3C XHTML Validation logo-->
+<p>
+  <a href="http://validator.w3.org/check?uri=referer"><img
+     src="http://www.w3.org/Icons/valid-xhtml11"
+     alt="Valid XHTML 1.1" height="31" width="88" /></a>
+</p>
+</body>
+</html>
+

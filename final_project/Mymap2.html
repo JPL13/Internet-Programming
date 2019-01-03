@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+ "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+  
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+ <link href="mymap.css" rel="stylesheet" type="text/css" />
+  <title>BruinLife Map</title>
+  </head>
+  <body>
+     <div id="header">
+       <h1>BruinLife Map</h1>
+            <blockquote>
+             <p>Help fellow bruins navigate campus</p>
+            </blockquote>
+     </div>
+    <!--The div element for the map -->
+    <div id="map"></div>
+    
+    <!--The form for the user input -->
+    <div id="form">
+      <table>
+      <tr><td>Name:</td> <td><input type='text' id='name'/> </td> </tr>
+      <tr><td>Comment:</td> <td><input type='text' id='address'/> </td> </tr>
+      <tr><td>Rating(scale: 0-5):</td> <td><input type='text' id='rating'/> </td> </tr>
+
+      <tr><td>Type:</td> <td><select id='type'> 
+                 <option value='bar'>bar</option>
+                 <option value='restaurant'>restaurant</option>
+                 <option value='bus' >bus</option>
+                 <option value='hospital'>hospital</option>
+                 <option value='coffee' >coffee</option>
+                 <option value='salon'>salon</option>
+                 <option value='shopping' >shopping</option>
+                 <option value='bank'>bank</option>
+                 <option value='swimming'>swimming pool</option>
+                 <option value='classroom' >classroom</option>
+                 <option value='grocery'>grocery</option>
+                 <option value='parking' >parking</option>
+                 <option value='police'>police</option>
+                 </select> </td></tr>
+                 <tr><td></td><td><input type='button' value='Save' onclick='saveData()'/></td></tr>
+      </table>
+    </div>
+    
+    
+     <script type="text/javascript">
+     
+     var customIcon = {
+        'bar': {
+          icon: 'http://maps.google.com/mapfiles/kml/shapes/bars.png'
+        },
+        'restaurant': {
+          icon: 'http://maps.google.com/mapfiles/kml/shapes/dining.png'
+        },
+
+        'bus': {
+          icon: 'http://maps.google.com/mapfiles/kml/shapes/bus.png'
+        },
+        
+        'hospital': {
+          icon: 'http://maps.google.com/mapfiles/kml/shapes/hospitals.png'
+        },
+        
+        'coffee': {
+          icon: 'http://maps.google.com/mapfiles/kml/shapes/coffee.png'
+        },      
+        'salon': {
+          icon: 'http://maps.google.com/mapfiles/kml/shapes/salon.png'
+        },  
+        'shopping': {
+          icon: 'http://maps.google.com/mapfiles/kml/shapes/shopping.png'
+        },  
+        
+        'bank': {
+          icon: 'http://maps.google.com/mapfiles/kml/shapes/dollar.png'
+        },  
+        
+        'swimming': {
+          icon: 'http://maps.google.com/mapfiles/kml/shapes/swimming.png'
+        },           
+        
+        'classroom':  {
+          icon: 'http://maps.google.com/mapfiles/kml/shapes/schools.png'
+        },          
+        
+        'grocery':  {
+          icon: 'http://maps.google.com/mapfiles/kml/shapes/grocery.png'
+        },
+        
+        'parking':  {
+          icon: 'http://maps.google.com/mapfiles/kml/shapes/parking_lot.png'
+        },
+        'police':  {
+          icon: 'http://maps.google.com/mapfiles/kml/shapes/police.png'
+        }        
+      };
+
+
+ var markers = [];
+
+ var map;   
+ 
+ var count;
+// Initialize and add the map
+function initMap() {
+  // The location of UCLA
+  var ucla = {lat: 34.06897, lng: -118.445};
+  
+  // The map, centered at Ucla
+   map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 16, center: ucla});
+  
+   infowindow = new google.maps.InfoWindow({
+          content: document.getElementById('form')
+        });
+  
+  
+  // messagewindow = new google.maps.InfoWindow({
+  //        content: document.getElementById('message')
+  //      });
+       
+     count=0;
+       
+       google.maps.event.addListener(map, 'click', function(event) {
+           marker = new google.maps.Marker({
+            position: event.latLng,
+            map: map
+          });
+
+
+          google.maps.event.addListener(marker, 'click', function() {
+            infowindow.open(map, marker);
+          });
+        });
+       
+       current_time=0;
+       
+   
+    var cookie=document.cookie; 
+  
+   if(!cookie)
+   alert("Hi there! It's your first time visiting, feel free to add markers to the map!");
+   
+   else
+  { name=cookie.split(";")[0].split("=")[0];
+    value=cookie.split(";")[0].split("=")[1];
+   
+   if(name=="markers")
+   alert("There are "+value+" markers in the map so far, feel free to mark your favorite/least favorite place");
+   
+   else
+   alert("Hi there! It's your first time visiting, feel free to add markers to the map!"); 
+  }
+  
+  
+  setInterval ("new_marker_check()", 2000);
+  
+
+}
+
+
+
+function new_marker_check() 
+{
+     downloadUrl("checkUpdate.php?time=" + current_time, function(data, responseCode) {
+          
+          if (responseCode == 200 && data && data.length>=1) {
+            		//alert("data: "+data);
+            		add_new_marker(data); 
+          }
+        });
+    			
+}
+
+var infowincontent=new Array();
+
+function add_new_marker(result)
+ {    if(result.length>=1){ 
+     var arr= result.split(';');
+     for(var i=0; i<arr.length-1; i++)
+   {   var info = arr[i].split('~');
+            //alert("array i is:"+arr[i]);
+			//alert("i is:" +i+" name is: "+info[0]);
+            //alert(info[1]);
+            //alert(info[2]);
+            //alert(info[3]);
+            //alert(info[4].split("<")[0]); 
+            //alert(info[5]);
+             
+              var name = info[0];
+              var address = info[1];
+              var type = info[4];
+              var point = new google.maps.LatLng( parseFloat(info[2]),
+                parseFloat(info[3]));
+              
+              //update current time 
+               //alert("type is: " +info[4]);
+              // alert("time is: " +info[5]);
+               current_time=info[5];
+               
+            
+              
+               //infowincontent = document.getElementById('message');
+             var messagewindow = new google.maps.InfoWindow;
+            
+            infowincontent[count] = document.createElement('div');
+              strong = document.createElement('strong');
+              strong.textContent = name;
+              infowincontent[count].appendChild(strong);
+              infowincontent[count].appendChild(document.createElement('br'));
+
+              starout=document.createElement('div');
+              starout.setAttribute("class", "stars-outer");
+              infowincontent[count].appendChild(starout);
+              
+              starin=document.createElement('div');
+              starin.setAttribute("class", "stars-inner");
+              starout.appendChild(starin);
+             infowincontent[count].appendChild(document.createElement('br'));
+              
+              var rating=info[6];
+              //alert("rating is : "+rating);
+
+ 
+              const starTotal=5;
+              const starPercentage = (rating / starTotal) * 100;
+ 
+              const starPercentageRounded = Math.round(starPercentage / 10) * 10;
+              starin.style.width=starPercentageRounded+"%";
+         
+             text = document.createElement('text');
+              text.textContent = address;
+              infowincontent[count].appendChild(text);
+              
+              var customicon = customIcon[type] || {};
+             
+             var marker = new google.maps.Marker({
+                          position: point,
+                          map: map,
+                          animation: google.maps.Animation.DROP,
+                          icon: customicon.icon
+                         });
+
+ google.maps.event.addListener(marker, 'mouseover', (function(marker, count) {
+         return function() {
+                messagewindow.setContent(infowincontent[count]);    
+                messagewindow.open(map, marker);
+          }
+    })(marker, count));
+
+ google.maps.event.addListener(marker, 'mouseout', (function(marker, count) {
+         return function() {
+              messagewindow.close();        
+         }
+    })(marker, count));
+      
+        markers.push(marker);
+ 
+   
+   count++;        
+ document.cookie = "markers="+count;
+
+}
+}
+}        
+
+
+
+
+function saveData() {
+  var name = document.getElementById("name").value;
+  var address = document.getElementById("address").value;
+  var type = document.getElementById("type").value;
+  var latlng = marker.getPosition();
+  var rating=document.getElementById("rating").value;
+  query_string="name=" + name + "&address=" + address +
+            "&type=" + type + "&lat=" + latlng.lat() + "&lng=" + latlng.lng()+ "&rating="+ rating  ;
+ 
+     //do_ajax_stuff(query_string);
+     
+      downloadUrl("MyMap.php?" + query_string, function(data, responseCode) {
+
+          if (responseCode == 200 ) {
+           // alert(data);
+            infowindow.close();  
+            display_info(data);
+          }
+        });
+     
+}
+
+ function downloadUrl(url, callback) {
+        var request = window.ActiveXObject ?
+            new ActiveXObject('Microsoft.XMLHTTP') :
+            new XMLHttpRequest;
+
+        request.onreadystatechange = function() {
+          if (request.readyState == 4) {
+            request.onreadystatechange = doNothing;
+            callback(request.responseText, request.status);
+          }
+        };
+
+        request.open('GET', url, true);
+        request.send(null);
+}
+
+function doNothing () {
+      }
+
+
+ function display_info(result)
+ {      var info = result.split('~');
+        var messagewindow = new google.maps.InfoWindow;
+
+             
+              var name = info[0];
+              var address = info[1];
+              var type = info[4];
+              var point = new google.maps.LatLng( parseFloat(info[2]),
+                parseFloat(info[3]));
+              //update current id  
+               current_time=info[5];
+               //infowincontent = document.getElementById('message');
+              
+            var infowincontent = document.createElement('div');
+              strong = document.createElement('strong');
+              strong.textContent = name;
+              infowincontent.appendChild(strong);
+              infowincontent.appendChild(document.createElement('br'));
+              
+               starout=document.createElement('div');
+              starout.setAttribute("class", "stars-outer");
+              infowincontent.appendChild(starout);
+              
+              starin=document.createElement('div');
+              starin.setAttribute("class", "stars-inner");
+              starout.appendChild(starin);
+             infowincontent.appendChild(document.createElement('br'));
+
+               rating=info[6];
+ 
+              const starTotal=5;
+              const starPercentage = (rating / starTotal) * 100;
+ 
+              const starPercentageRounded = Math.round(starPercentage / 10) * 10;
+              starin.style.width=starPercentageRounded+"%";
+              
+              text = document.createElement('text');
+              text.textContent = address;
+              infowincontent.appendChild(text);
+              var customicon = customIcon[type] || {};
+             
+              marker.setIcon(customicon.icon);
+              marker.setAnimation(google.maps.Animation.DROP);
+ 
+             
+
+ google.maps.event.addListener(marker, 'mouseover', (function(marker, count) {
+         return function() {
+                messagewindow.setContent(infowincontent);    
+                messagewindow.open(map, marker);
+          }
+    })(marker, count));
+
+ google.maps.event.addListener(marker, 'mouseout', (function(marker, count) {
+         return function() {
+              messagewindow.close();        
+         }
+    })(marker, count));
+      
+   
+ markers.push(marker);
+   
+   count++;        
+ document.cookie = "markers="+count;
+}        
+
+
+    </script>
+   
+   <script async defer
+   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqOS88KZ9qtG9CigZxwYU3oOrg_D2vEwE&callback=initMap">
+   </script>
+</body>  
+</html> 
+    

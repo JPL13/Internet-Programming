@@ -1,0 +1,217 @@
+*{color: white;}
+
+html,body {
+margin:0;
+padding:0;
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:100%;
+color:white;
+background-color:#6E2C00;
+}
+
+body {
+text-align:center;
+/* this centers the container in IE 5* browsers. The text is then set to the left aligned default in the #container selector */
+}
+
+body {
+background-image:url(beans.jpg);
+background-repeat:no-repeat;
+background-size: 100% 100%;
+}
+
+h1,h2,h3 {
+color:white;
+font-weight:bold;
+}
+
+
+h1 {
+font-size:150%;
+padding-top:25px;
+margin-bottom: 3px;
+text-align:center;
+}
+
+h2{
+font-size:130%;
+}
+
+h3, caption {
+font-size:120%;
+padding-top:10px;
+}
+
+blockquote {
+text-align:right;
+font-family: "Comic Sans MS";
+font-size: 120%;
+
+}
+
+
+ol{
+list-style-type: upper-roman;
+}
+
+ul{
+list-style-type: square;
+}
+
+li a{
+color: white;
+}
+
+.legend {
+text-align: center;
+font-size: 130%;
+font-weight:bold;
+}
+
+fieldset {
+background-color: rgba(135, 54, 0, 0.5); 
+}
+
+#main_container {
+width:780px;
+text-align:left;
+/* this overrides the text-align: center on the body element. */
+margin:0 auto;
+}
+
+#header h1 {
+text-align:center;
+font-size:240%;
+}
+
+#header {
+
+height:130px;
+font-family:"Garamond";
+background-size:100% 40%;
+background: url(BG.jpg) top;
+}
+
+#sidebar {
+width:200px;
+float:left;
+padding-top:0;
+padding-right:15px;
+padding-bottom:0;
+padding-left:15px;
+background-color:rgba(135, 54, 0, 0.5); 
+}
+
+#image {
+margin:0;
+float:right;
+padding-left:15px;
+padding-bottom:15px;
+padding-right:0;
+}
+
+ul#nav {
+list-style-type:none;
+margin-bottom:20px;
+padding-bottom:153px;
+padding-top:0;
+padding-right:0;
+padding-left:0;
+margin-top:0;
+margin-right:0;
+margin-left:0;
+background-image:url(coffeebean.jpg);
+background-repeat:no-repeat;
+background-position: bottom;
+}
+
+#nav li a {
+font-size:120%;
+color:#FFF;
+text-decoration:none;
+display:block;
+background-color:black;
+padding:8px;
+border-bottom-width:1px;
+border-bottom-style:solid;
+border-bottom-color:#3574A7;
+}
+
+#nav li a:hover,#nav li active,#nav li focus {
+color:#123464;
+background-color:#A9CCE3;
+}
+
+#content {
+margin-left:240px;
+padding-left:0;
+padding-right:0;
+padding-bottom:0;
+padding-top:0;
+
+}
+#content p {
+color:white;
+background-color:rgba(135, 54, 0, 0.6);  
+}
+
+#footer {
+clear:both;
+text-align:center;
+padding-top:2px;
+padding-right:0;
+padding-bottom:2px;
+padding-left:60px;
+background-color: black;
+color:white;
+font-size:105%;
+}
+
+#content p,#sidebar p {
+font-size:85%;
+line-height:1.4;
+}
+
+
+
+		 #navbar {  margin:0;
+	                margin-left: 100px;
+	                padding: 0;
+	                height: 2em; 
+                 }
+          #navbar li {
+                    line-height:1.4;
+                    width: 9em;  
+	                list-style: none;
+	                float: left; }
+          #navbar li a {
+	                 display: block;
+	                 padding: 3px 8px;
+	                 text-align: center;
+	                 font-size:120%;
+	                 color: black;
+	                 font-weight: bold;
+	                 text-decoration: none; 
+	                 border-bottom-width:1px;
+                     border-bottom-style:solid;
+                     border-bottom-color:#3574A7;}
+	     #navbar li ul {
+	                 display: none; 
+	                 width: 9em; /* Width to help Opera out */
+	                 }
+	     #navbar li:hover ul {
+	                 display: block;
+	                 position: absolute;
+	                 margin: 0;
+	                 padding: 0; }
+         #navbar li:hover li {
+	                float: none; }
+         #navbar li:hover li a {
+                    font-size: 100%;
+                    font-weight: normal;
+	                background-color: #A9CCE3;
+	                border-bottom: 1px solid #fff;
+	                color: black; }
+         #navbar li li a:hover {
+	                background-color: #E59866; }            
+           
